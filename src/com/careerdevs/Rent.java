@@ -3,25 +3,27 @@ package com.careerdevs;
 import com.careerdevs.ui.UserInput;
 
 import java.util.ArrayList;
-// a statc class
-// what is a  utility class?
-//types of classes categpries
 
+public class Rent {
 
-public class RentalService {
-    private static ArrayList<Car> availableCars = new ArrayList<>();
-    private static ArrayList<Car> rentedCars = new ArrayList<>();
+        private static ArrayList<Car> availableCars = new ArrayList<>();
+        private static ArrayList<Car> rentedCars = new ArrayList<>();
 
-    public static void initCarStorage(){
+        public static void initCarStorage(){
         Car rental1 = new Car("Honda", "Accord" , false);
         Car rental2 = new Car("Mercedes", "Benz" , false);
         Car rental3 = new Car("Bentley", "Arnage" , true);
         availableCars.add(rental1);
         availableCars.add(rental2);
-        rentedCars.add(rental3);
+        availableCars.add(rental3);
+
+
+
 
     }
-    private static void mainMenu() {
+
+
+        private static void mainMenu() {
         System.out.println("Welcome to Java Car Rentals!");
         System.out.println("Would you like to...");
         System.out.println("1)" + "Rent");
@@ -30,12 +32,12 @@ public class RentalService {
         //UserInput user1 = new UserInput();
         switch(UserInput.readInt("Make a selection" , 1, 3)){
             case 1 : rentalMenu();
-            break;
+                break;
             case 2: returnMenu();
-            break;
+                break;
             case 3 :
                 System.out.println("bye");
-            break;
+                break;
             default:
                 System.out.println("Enter a whole number");
         }
@@ -54,63 +56,63 @@ public class RentalService {
 */
     }
 
-    private static void returnMenu(){
-            System.out.println();
+        private static void returnMenu(){
+        System.out.println();
     };
-    private static void rentalMenu() {
-        if (availableCars.isEmpty()) {
-            System.out.println("There are no more cars to rent");
-        }else{
-            System.out.println("Available Cars");
-            //initCarStorage();
-            for (int i = 0; i < availableCars.size(); i++) {
-                System.out.println("(" + (i + 1) + ") " + availableCars.get(i).getName());
-            }
-            int readUserInput = UserInput.readInt("Enter a number to select the car you'd like to rent" + "\n" + "Selection", 1, availableCars.size());
-            //ArrayList<Car> carSelection = new ArrayList<>();
-            Car carSelection = availableCars.get(readUserInput - 1);
-            System.out.println("Thank you! You are now renting the" + " " + availableCars.get(readUserInput - 1).getName());
+        private static void rentalMenu(){
+        System.out.println("Available Cars");
+        initCarStorage();
+        for(int i = 0; i < availableCars.size(); i++){
+            System.out.println("(" + ( i + 1) +") "+ availableCars.get(i).getName());
+        };
 
-
-            //rentedCars.add(availableCars.get(readUserInput - 1));
-            //System.out.println(rentedCars);
-            carSelection.setRented(true);
-            availableCars.remove(readUserInput - 1);
-            rentedCars.add(carSelection);
-
-            System.out.println(availableCars);
-            System.out.println(rentedCars);
-            System.out.println(carSelection);
-            for (int i = 0; i < rentedCars.size(); i++) {
-                System.out.println("(" + (i + 1) + ") rented cars" + rentedCars.get(i).getName());
-            }
-            ;
-            for (int i = 0; i < availableCars.size(); i++) {
-                System.out.println("(" + (i + 1) + ") available cars" + availableCars.get(i).getName());
-            }
-
-        }
-
+        int readUserInput = UserInput.readInt("Enter a number to select the car you'd like to rent" + "\n" + "Selection", 1,  availableCars.size());
+        //ArrayList<Car> carSelection = new ArrayList<>();
+        Car carSelection = availableCars.get(readUserInput - 1);
+        System.out.println("Thank you! You are now renting the" + " " +  availableCars.get(readUserInput - 1).getName());
+        initCarStorage();
         mainMenu();
+
+        //rentedCars.add(availableCars.get(readUserInput - 1));
+        //System.out.println(rentedCars);
+        carSelection.setRented(true);
+        availableCars.remove(readUserInput - 1);
+        rentedCars.add(carSelection);
+
+        System.out.println(availableCars);
+        System.out.println(rentedCars);
+        System.out.println(carSelection);
+        for(int i = 0; i < rentedCars.size(); i++){
+            System.out.println("(" + ( i + 1) +") "+ rentedCars.get(i).getName());
+        };
+        for(int i = 0; i < availableCars.size(); i++){
+            System.out.println("(" + ( i + 1) +") "+ availableCars.get(i).getName());
+        };
+
+
+        //mainMenu();
     }
 
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         //System.out.println("Welcome to the Car Rental CLI");
         //UserInput.readInt("make a selection", 1 , 3);
         //rentalMenu();
-        initCarStorage();
-        mainMenu();
+            initCarStorage();
+        //mainMenu();
         //rentalMenu();
         //UserInput.readInt("dfa",3,4);
 
         //System.out.println(RentalService.availableCars);
 
+        // why do the instances go in the main method and not outside. What is the  rentalservice class used
         //  why am i creating instances of objects i cant picture it
 
 
+        //why cant i call this setRented method?
         //System.out.println(rental1.setRented());
 
+        //why is all this logic code going in main array
 
         /* String carStatus;
 
@@ -132,7 +134,9 @@ public class RentalService {
 
 
     }
-}
+    }
+
+
 
 
 
