@@ -28,7 +28,10 @@ public class RentalService {
         System.out.println("2)" + "Return");
         System.out.println("3)" + "Exit the Program");
         //UserInput user1 = new UserInput();
-        switch(UserInput.readInt("Make a selection" , 1, 3)){
+
+        int userNumSelection = UserInput.readInt("Make a selection" , 1, 3);
+        switch(userNumSelection){
+        //switch(UserInput.readInt("Make a selection" , 1, 3)){
             case 1 : rentalMenu();
             break;
             case 2: returnMenu();
@@ -55,7 +58,39 @@ public class RentalService {
     }
 
     private static void returnMenu(){
-            System.out.println();
+        if (rentedCars.isEmpty()) {
+            System.out.println("There are no more cars to return");
+
+        }else {
+            System.out.println("Rented Cars");
+            for (int i = 0; i < rentedCars.size(); i++) {
+                System.out.println("(" + (i + 1) + ") " + rentedCars.get(i).getName());
+            }
+            int readUserInput = UserInput.readInt("Enter a number to select the car you'd like to return" + "\n" + "Selection", 1, rentedCars.size());
+
+            Car carSelection = rentedCars.get(readUserInput - 1);
+
+            System.out.println(readUserInput);
+            System.out.println("Thank you! You have returned the" + " " + rentedCars.get(readUserInput - 1).getName());
+
+            carSelection.setRented(false);
+
+
+            availableCars.add(carSelection);
+            rentedCars.remove(readUserInput - 1);
+            System.out.println(availableCars);
+            System.out.println(rentedCars);
+            System.out.println(carSelection);
+
+            for (int i = 0; i < rentedCars.size(); i++) {
+                System.out.println("(" + (i + 1) + ") rented cars " + rentedCars.get(i).getName());
+            }
+            ;
+            for (int i = 0; i < availableCars.size(); i++) {
+                System.out.println("(" + (i + 1) + ") available cars " + availableCars.get(i).getName());
+            }
+        }
+        mainMenu();
     };
     private static void rentalMenu() {
         if (availableCars.isEmpty()) {
@@ -82,11 +117,11 @@ public class RentalService {
             System.out.println(rentedCars);
             System.out.println(carSelection);
             for (int i = 0; i < rentedCars.size(); i++) {
-                System.out.println("(" + (i + 1) + ") rented cars" + rentedCars.get(i).getName());
+                System.out.println("(" + (i + 1) + ") rented cars " + rentedCars.get(i).getName());
             }
             ;
             for (int i = 0; i < availableCars.size(); i++) {
-                System.out.println("(" + (i + 1) + ") available cars" + availableCars.get(i).getName());
+                System.out.println("(" + (i + 1) + ") available cars " + availableCars.get(i).getName());
             }
 
         }
