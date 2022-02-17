@@ -37,7 +37,7 @@ public class RentalService {
             case 2: returnMenu();
             break;
             case 3 :
-                System.out.println("bye");
+                System.exit(0);
             break;
             default:
                 System.out.println("Enter a whole number");
